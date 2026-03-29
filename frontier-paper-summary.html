@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Geometry of Generalist Robotics — First Principles AI</title>
+  <meta name="description" content="A floating-text editorial paper summary on GR00T N1 and Action Flow-Matching." />
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">First Principles <span>AI</span></a>
+      <nav class="main-nav">
+        <a href="frontier-ai.html">Frontier AI</a>
+        <a href="ai-systems.html">AI Systems</a>
+        <a href="job-architecture.html">Jobs under AI</a>
+        <a href="theory-transfer.html">Theory Transfer</a>
+        <a href="about.html">About</a>
+        <a class="cta-link" href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="article-shell">
+    <section class="floating-hero">
+      <div class="container">
+        <div class="article-frame">
+          <div class="article-meta">Frontier AI, decoded · Paper Summary</div>
+          <h1 class="floating-title">The Geometry of Generalist Robotics: A Deep Dive into GR00T N1 and Action Flow-Matching</h1>
+          <p class="floating-subtitle">
+            A first flagship contribution in floating editorial form: quieter, more spacious, and more essay-like than the original card-based treatment.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="article-flow article-frame">
+
+        <article class="floating-block">
+          <div class="kicker">1 · Historical Context</div>
+          <h2>From Behavior Cloning to Foundation Models</h2>
+          <p>
+            For decades, robotics was defined by "Task-Specific" programming. Whether through classical control theory or early imitation learning (Behavior Cloning), a robot was only as good as the specific data collected for its specific arm. This led to what NVIDIA researchers call the <strong>"Data Island" problem</strong>: an archipelago of isolated datasets that couldn't be unified because the "language" of a 2-fingered gripper is fundamentally different from a 5-fingered humanoid hand.
+          </p>
+          <p>
+            The breakthrough of GR00T N1 (Generalist Robot 00-Technology) represents the "GPT moment" for physical agents. It moves away from predicting discrete coordinates and toward a <strong>Vision-Language-Action (VLA)</strong> framework that treats physical movement as a continuous probability flow.
+          </p>
+        </article>
+
+        <article class="floating-block soft">
+          <div class="kicker">2 · Dual-System Architecture</div>
+          <h2>Silicon cognition with slow planning and fast reflex</h2>
+          <p>
+            Inspired by Daniel Kahneman’s <em>Thinking, Fast and Slow</em> (2011), GR00T N1 employs a dual-system architecture to manage the trade-off between semantic reasoning and physical reactivity.
+          </p>
+          <ul class="feature-list">
+            <li><strong>System 2 (The Planner):</strong> A Vision-Language Model (VLM) based on the <strong>Eagle-2</strong> backbone. It operates at <strong>10Hz</strong>. Its role is to interpret high-level language instructions (e.g., "Pick up the apple") and ground them in the visual scene. Interestingly, the researchers found that using the <strong>12th layer</strong> of the LLM—rather than the final layer—yielded better results. This suggests that middle-layer embeddings retain more "spatial grounding" than the highly abstract semantic tokens at the output.</li>
+            <li><strong>System 1 (The Reflex):</strong> A <strong>Diffusion Transformer (DiT)</strong> operating at <strong>120Hz</strong>. It receives the "intent" from System 2 and generates high-frequency motor commands. At this speed, the robot can react to physical perturbations in real-time, much like human muscle memory.</li>
+          </ul>
+        </article>
+
+        <article class="floating-block">
+          <div class="kicker">3 · Mathematical Heart</div>
+          <h2>Action Flow-Matching</h2>
+          <p>
+            The core theoretical innovation in GR00T N1 is the shift from standard Diffusion Models to <strong>Action Flow-Matching</strong>. While traditional diffusion often requires hundreds of denoising steps, Flow-Matching creates a deterministic, straight-line path from noise to action.
+          </p>
+          <p>
+            Let $A_t$ be a ground-truth action chunk. We define a probability path that interpolates between a distribution of pure noise $\epsilon \sim \mathcal{N}(0, \mathbf{I})$ and the target action $A_t$.
+          </p>
+
+          <div class="formula-card">
+            <span class="formula-label">Interpolation equation</span>
+            $$A_t^\tau = \tau A_t + (1 - \tau)\epsilon$$
+          </div>
+
+          <p>
+            The model $v_\theta$ is trained to approximate the <strong>denoising vector field</strong> that points from the noise toward the clean action. The loss function $\mathcal{L}_{fm}(\theta)$ is defined as:
+          </p>
+
+          <div class="formula-card">
+            <span class="formula-label">Flow-Matching loss</span>
+            $$\mathcal{L}_{fm}(\theta) = \mathbb{E}_{\tau, \epsilon, A_t} \left[ \| v_\theta(\phi_t, A_t^\tau, q_t) - (A_t - \epsilon) \|^2 \right]$$
+          </div>
+
+          <p>Where:</p>
+          <ul class="feature-list">
+            <li>$\phi_t$ represents the vision-language tokens from System 2.</li>
+            <li>$q_t$ is the current proprioceptive state of the robot.</li>
+            <li>$(A_t - \epsilon)$ is the target velocity of the flow.</li>
+          </ul>
+
+          <p>
+            By minimizing this quadratic loss, the model learns the "current" of the movement. During inference, we use forward Euler integration to sample the action in just <strong>4 steps</strong>:
+          </p>
+
+          <div class="formula-card">
+            <span class="formula-label">Forward Euler update</span>
+            $$A_t^{\tau + 1/K} = A_t^\tau + \frac{1}{K} v_\theta(\phi_t, A_t^\tau, q_t)$$
+          </div>
+        </article>
+
+        <article class="floating-block soft">
+          <div class="kicker">4 · Latent Bridge</div>
+          <h2>Learning from "Action-less" data</h2>
+          <p>
+            The most significant barrier to training a generalist robot is that the "Internet of Human Videos" contains no motor command labels. To solve this, GR00T N1 uses a <strong>VQ-VAE (Vector Quantized Variational Autoencoder)</strong> to learn a <strong>Latent Action Codebook</strong>.
+          </p>
+          <p>The encoder $E$ takes a current frame $x_t$ and a future frame $x_{t+H}$ to produce a latent action $z_t$:</p>
+
+          <div class="formula-card">
+            <span class="formula-label">Encoder mapping</span>
+            $$z_t = E(x_t, x_{t+H})$$
+          </div>
+
+          <p>The decoder $D$ must then reconstruct the future frame:</p>
+
+          <div class="formula-card">
+            <span class="formula-label">Decoder reconstruction</span>
+            $$\hat{x}_{t+H} = D(x_t, z_t)$$
+          </div>
+
+          <p>
+            Because the latent space $z$ is shared across all "embodiments" (humans and various robots), the model can treat a human video as a "robot with unknown joints" and still extract the <strong>mathematical essence of the intent</strong>. This allows the training to scale across the <strong>Data Pyramid</strong>, moving from massive web-scale human videos at the base to scarce, high-fidelity real-robot trajectories at the peak.
+          </p>
+        </article>
+
+        <article class="floating-block">
+          <div class="kicker">5 · Why This Matters</div>
+          <h2>From Digital AI to Physical AI</h2>
+          <p>
+            Understanding GR00T N1 is essential because it marks the transition from <strong>Digital AI</strong> (words and pixels) to <strong>Physical AI</strong> (embodied intelligence).
+          </p>
+          <p>
+            If you understand the "First Principles" here, you realize that intelligence is not just about "knowing" things; it is about the <strong>alignment of semantic goals with physical flow.</strong> The beauty of the GR00T N1 derivation is that it proves we don't need a different brain for every body. By mapping different physical structures into a shared latent "Action Space," we have unlocked the ability for machines to learn the "logic of the world" simply by watching us live in it.
+          </p>
+        </article>
+
+      </div>
+
+      <div class="article-end">
+        <p><strong>Next step:</strong> this page can later gain figure inserts, marginal notes, paper metadata, and a small “related essays” footer without losing the floating-text feel.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>First Principles AI</strong><br />
+        Floating editorial paper summaries for frontier AI.
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="frontier-ai.html">Frontier AI</a>
+        <a href="ai-systems.html">AI Systems</a>
+        <a href="job-architecture.html">Jobs under AI</a>
+        <a href="theory-transfer.html">Theory Transfer</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
