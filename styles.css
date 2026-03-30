@@ -482,4 +482,18 @@ li {
   h1 {
     max-width: none;
   }
+
+  .impressum {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+.impressum a {
+  color: inherit;
+  text-decoration: underline;
+}
 }
