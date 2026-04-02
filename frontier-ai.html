@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Frontier AI, decoded — First Principles AI</title>
-  <meta name="description" content="Research interpretation, paper summaries, and architecture essays on frontier AI." />
+  <meta name="description" content="Research interpretation, paper-based microlearning, and architectural deep dives." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -12,7 +12,7 @@
     <div class="container header-inner">
       <a class="brand" href="index.html">First Principles <span>AI</span></a>
       <nav class="main-nav">
-        <a href="frontier-ai.html">Frontier AI</a>
+        <a href="frontier-ai.html" class="active">Frontier AI</a>
         <a href="ai-systems.html">AI Systems</a>
         <a href="job-architecture.html">Jobs under AI</a>
         <a href="theory-transfer.html">Theory Transfer</a>
@@ -27,137 +27,63 @@
       <div class="container">
         <div class="hero-card">
           <div class="eyebrow">01 · Frontier AI, decoded</div>
-          <h1 class="page-title">Decode what matters in frontier AI.</h1>
-          <p class="lead">
-            This section is dedicated to paper summaries, deep-dive essays, architecture analysis, field maps, and research interpretation for readers who want structured clarity on where AI is actually moving.
-          </p>
-          <div class="subnav">
-            <a href="#start">Start Here</a>
-            <a href="#summaries">Paper Summaries</a>
-            <a href="#essays">Deep-Dive Essays</a>
-            <a href="#architecture">Architecture Breakdowns</a>
-            <a href="#themes">Research Themes</a>
-          </div>
+          <h1 class="page-title">High-signal research, structured for clarity.</h1>
         </div>
       </div>
     </section>
 
-    <section id="start" class="section">
-      <div class="container split">
-        <div class="card">
-          <div class="kicker">Editorial Thesis</div>
-          <h2>Not all frontier AI developments deserve equal attention.</h2>
-          <p>
-            The purpose of this section is to separate signal from noise. New papers, models, benchmarks, and architectural claims appear constantly. What matters is not novelty alone, but mechanism, implications, and whether a given idea changes the shape of the field.
-          </p>
-          <p>
-            The work here is written to help serious readers understand what a development means, how it works, and why it matters.
-          </p>
-        </div>
-
-        <div class="card soft">
-          <div class="kicker">What Belongs Here</div>
-          <div>
-            <span class="tag">Paper summaries</span>
-            <span class="tag">Architecture essays</span>
-            <span class="tag">Model families</span>
-            <span class="tag">Benchmark critique</span>
-            <span class="tag">Field overviews</span>
-            <span class="tag">Future directions</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="summaries" class="section">
+    <section class="section">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="kicker">Paper Summaries</div>
-            <h2>Technical papers translated into structured understanding.</h2>
-          </div>
-        </div>
-
-        <div class="grid-2">
-          <article class="card article-list">
-            <div class="item">
-              <div class="meta">First contribution</div>
-              <h3><a href="frontier-paper-summary.html">The Geometry of Generalist Robotics: A Deep Dive into GR00T N1 and Action Flow-Matching</a></h3>
-              <p>A floating-text editorial explainer on generalist robotics, dual-system control, flow-matching, and latent action spaces.</p>
-            </div>
-            <div class="item">
-              <div class="meta">Future slot</div>
-              <h3>World models and embodied prediction</h3>
-              <p>How predictive modeling changes control, planning, and physical intelligence.</p>
-            </div>
-            <div class="item">
-              <div class="meta">Future slot</div>
-              <h3>Reasoning, memory, and test-time compute</h3>
-              <p>What new inference-time strategies mean for actual AI capability.</p>
-            </div>
-          </article>
-
+        <div class="grid-3">
+          
           <div class="card">
-            <h3>What a strong paper summary should do</h3>
-            <ul class="feature-list">
-              <li>State the historical context</li>
-              <li>Explain the technical mechanism clearly</li>
-              <li>Render the math without unnecessary intimidation</li>
-              <li>Show what is genuinely novel</li>
-              <li>Translate the paper’s implications into industry, systems, or future research relevance</li>
+            <h2>Paper based Microlearnings</h2>
+            <ul class="article-list-simple">
+              <li>
+                <a href="paper_microlearnings/eureka_human_level_reward_design/eureka_human_level_reward_design.html">
+                  EUREKA: The Autonomous Evolution of Robotic Mastery
+                </a>
+              </li>
+              <li>
+                <a href="paper_microlearnings/frontier-page-summary/frontier-page-summary.html">
+                  Frontier Page Summary: GR00T N1 and Action Flow-Matching
+                </a>
+              </li>
             </ul>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <section id="essays" class="section">
-      <div class="container grid-2">
-        <article class="card">
-          <div class="kicker">Deep-Dive Essays</div>
-          <h2>Long-form essays for ideas that need more than a summary.</h2>
-          <p>Some developments are best understood not as isolated papers, but as field shifts. Essays in this section can cover major patterns like multimodality, physical AI, beyond-transformer design, world models, post-training strategy, or agentic system evolution.</p>
-        </article>
-
-        <article class="card soft">
-          <div class="kicker">Possible essay directions</div>
-          <ul class="feature-list">
-            <li>Beyond transformers: what may actually replace or complement them</li>
-            <li>Why robotics may become the most important downstream test of foundation models</li>
-            <li>The limits of benchmark culture in judging real intelligence</li>
-            <li>Inference-time adaptation as a new scaling frontier</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section id="architecture" class="section">
-      <div class="container">
-        <div class="card">
-          <div class="kicker">Architecture Breakdowns</div>
-          <h2>Understanding how systems are built under the surface.</h2>
-          <p>
-            This subsection can be used for architecture-specific analysis: diffusion transformers, vision-language-action systems, recurrent alternatives, memory modules, retrieval patterns, multi-agent orchestration, hybrid symbolic/neural approaches, and beyond.
-          </p>
-          <p class="note">
-            Over time, this section can become one of the most valuable parts of the website because it links technical reading to conceptual pattern recognition.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="themes" class="section">
-      <div class="container">
-        <div class="cta-panel">
-          <div class="kicker">Research Themes</div>
-          <h2>An expandable hub for frontier AI interpretation.</h2>
-          <p>
-            Frontier AI, decoded is designed as a long-term library rather than a simple archive. It should grow into a recognizable destination for readers who want clear, rigorous interpretation of what matters in AI research.
-          </p>
-          <div class="button-row">
-            <a class="button" href="frontier-paper-summary.html">Read first paper summary</a>
-            <a class="button secondary" href="contact.html">Contact</a>
+          <div class="card">
+            <h2>Paper Application</h2>
+            <ul class="article-list-simple">
+              <li>
+                <a href="paper_applications/vla_deployment_guide/index.html">
+                  Deploying Vision-Language-Action (VLA) Models
+                </a>
+              </li>
+            </ul>
           </div>
+
+          <div class="card">
+            <h2>Architecture Breakdowns</h2>
+            <ul class="article-list-simple">
+              <li>
+                <a href="architecture_breakdowns/dit_deep_dive/index.html">
+                  Diffusion Transformers (DiT)
+                </a>
+              </li>
+              <li>
+                <a href="architecture_breakdowns/ssm_mamba/index.html">
+                  State-Space Models (Mamba)
+                </a>
+              </li>
+              <li>
+                <a href="architecture_breakdowns/agentic_workflows/index.html">
+                  Agentic Loop Patterns
+                </a>
+              </li>
+            </ul>
+          </div>
+
         </div>
       </div>
     </section>
@@ -166,8 +92,8 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
-        <strong>Frontier AI, decoded</strong><br />
-        Research interpretation, paper summaries, and architecture essays.
+        <strong>First Principles AI</strong><br />
+        Frontier AI, decoded for the serious practitioner.
       </div>
       <div class="footer-links">
         <a href="index.html">Home</a>
