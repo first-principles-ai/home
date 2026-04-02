@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EUREKA: Human-Level Reward Design via Coding LLMs</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: #000;
+            color: #fff;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        h1 { margin: 0; font-size: 2.5em; }
+        h2 { color: #2c3e50; border-bottom: 2px solid #76B900; padding-bottom: 10px; margin-top: 40px; }
+        h3 { color: #34495e; margin-top: 30px; }
+        p { margin-bottom: 20px; text-align: justify; }
+        .image-container {
+            text-align: center;
+            margin: 40px 0;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        .caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            display: block;
+            font-size: 0.9em;
+        }
+        /* Mathematical expressions now blend with the background */
+        .math-display {
+            text-align: center;
+            margin: 25px 0;
+            font-size: 1.1em;
+        }
+        blockquote {
+            background: #e1f5fe;
+            border-left: 10px solid #03a9f4;
+            margin: 1.5em 10px;
+            padding: 0.5em 10px;
+            font-style: italic;
+        }
+        ul, ol { margin-bottom: 20px; }
+        li { margin-bottom: 10px; }
+        .toc {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .toc h2 { font-size: 1.2em; margin-top: 0; }
+        .toc ul { list-style: none; padding-left: 0; }
+        .toc li { margin-bottom: 5px; }
+        .toc a { text-decoration: none; color: #76B900; font-weight: bold; }
+    </style>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>EUREKA: The Autonomous Evolution of Robotic Mastery</h1>
+    <p>How LLMs became the world’s best robotics teachers</p>
+</header>
+
+<div class="toc">
+    <h2>Table of Contents</h2>
+    <ul>
+        <li>1. <a href="#ch1">The Invisible Bottleneck</a></li>
+        <li>2. <a href="#ch2">The Language of Success</a></li>
+        <li>3. <a href="#ch3">The "Black Art" of Shaping</a></li>
+        <li>4. <a href="#ch4">Reward Hacking</a></li>
+        <li>5. <a href="#ch5">The "Open-Loop" Failure</a></li>
+        <li>6. <a href="#ch6">Introducing EUREKA</a></li>
+        <li>7. <a href="#ch7">Environment as Context</a></li>
+        <li>8. <a href="#ch8">Evolutionary Search</a></li>
+        <li>9. <a href="#ch9">Reward Reflection</a></li>
+        <li>10. <a href="#ch10">Nested Optimization</a></li>
+        <li>11. <a href="#ch11">Discovery Over Imitation</a></li>
+        <li>12. <a href="#ch12">The Proof: 83% Better</a></li>
+        <li>13. <a href="#ch13">The Catch: Optimizer, Not Creator</a></li>
+    </ul>
+</div>
+
+<section id="ch1">
+    <h2>Chapter 1: The Invisible Bottleneck</h2>
+    <p>Imagine a robotic "Shadow Hand" — a complex, anthropomorphic machine with fingers as nimble as your own. You want to teach it a simple trick: spinning a silver pen. In the world of Artificial Intelligence, we use <strong>Reinforcement Learning (RL)</strong> for this[cite: 1, 2]. We build a "Student" algorithm, like PPO (Proximal Policy Optimization), which learns by trial and error[cite: 1, 2].</p>
+    <p>But here is the catch: the student is only as good as the <strong>Teacher</strong>. In RL, the teacher is a <strong>Reward Function</strong> — a piece of Python code that gives the robot a "score" for every action it takes[cite: 1, 2]. If the pen spins, give points. If the pen falls, take them away[cite: 2].</p>
+    <p>For decades, writing these scoring rules has been the <strong>"Black Art" of robotics</strong>[cite: 1, 2]. Humans find it nearly impossible to write the perfect mathematical formula that balances velocity, finger proximity, and joint torque[cite: 2]. If the math is slightly off, the robot fails. This is the <strong>Reward Engineering Bottleneck</strong>[cite: 1, 2].</p>
+
+    <div class="image-container">
+        <img src="images/slide_1_final.png" alt="EUREKA: The End of Manual Reward Design. A hyper-realistic robotic Shadow Hand spins a pen on the left, while a translucent code editor showing reward logic floats on the right.">
+        <span class="caption">Figure 1: EUREKA positions LLMs as autonomous optimization systems that solve the "impossible" problem of reward design[cite: 1].</span>
+    </div>
+</section>
+
+<section id="ch2">
+    <h2>Chapter 2: The Language of Success</h2>
+    <p>To understand how NVIDIA’s <strong>EUREKA</strong> solves this, we must first understand the fundamental interface of robot learning. Every RL task is defined by a simple mapping[cite: 1]:</p>
+    <div class="math-display">
+        $$\text{Reward} = f(\text{State}, \text{Action}) \rightarrow \text{Scalar}$$
+    </div>
+    <p>The "State" is what the robot sees (the pen’s position). The "Action" is what the robot does (moving a finger). The "Scalar" is the single number — the grade — the robot receives[cite: 1].</p>
+    <p>The goal of reward design is to find a "shaped" reward function $R$ that guides the robot toward a "ground-truth" success metric, which we call the <strong>Fitness Function ($F$)</strong>[cite: 1, 2]. For pen spinning, the fitness function is simple: "Did the pen rotate?"[cite: 1, 2]. But the reward function needed to get there is a high-dimensional tuning nightmare[cite: 2].</p>
+</section>
+
+<section id="ch3">
+    <h2>Chapter 3: The "Black Art" of Shaping</h2>
+    <p>Why can't we just tell the robot "get 1 point if the pen rotates"? This is called a <strong>Sparse Reward</strong>[cite: 2]. While easy for humans to define, it is nearly impossible for a robot to find by accident[cite: 2]. Imagine trying to learn to play the piano, but you only hear a sound if you play an entire Mozart sonata perfectly on the first try. You would never learn[cite: 2].</p>
+    <p>Engineers use <strong>Shaped Rewards</strong> to provide "breadcrumbs" — incremental signals like "good job, you touched the pen"[cite: 2]. However, humans are notoriously bad at balancing these competing terms[cite: 2]. A recent survey found that <strong>92%</strong> of RL practitioners report manual trial-and-error design, and <strong>89%</strong> admit their rewards are sub-optimal[cite: 2].</p>
+
+    <div class="image-container">
+        <img src="images/slide_2_final.png" alt="The Reward Design Gap. A robotic arm in a simulator is glitching, vibrating its fingers against the floor instead of picking up a cube.">
+        <span class="caption">Figure 2: Balancing weighted sums of distance, velocity, and torque is a high-dimensional tuning problem that humans often fail[cite: 2].</span>
+    </div>
+</section>
+
+<section id="ch4">
+    <h2>Chapter 4: Reward Hacking</h2>
+    <p>When the math is unbalanced, robots don't just fail — they "cheat." This is known as <strong>Reward Hacking</strong>[cite: 2].</p>
+    <p>If you reward a robot for "moving its hand toward the pen" without also rewarding "grasping the pen," the robot might find a mathematical "hack" where it moves its hand back and forth near the pen at 100Hz to rack up points without ever actually touching the object[cite: 2]. The robot has maximized the reward function you wrote, but it has completely failed the task you intended[cite: 2].</p>
+</section>
+
+<section id="ch5">
+    <h2>Chapter 5: The "Open-Loop" Failure</h2>
+    <p>Prior attempts to use Large Language Models (LLMs) like GPT-4 for robotics often fell into the <strong>"Open-Loop" trap</strong>[cite: 1, 2]. In this "Old Way," a human would describe a task, the LLM would generate a reward function, and that was the end[cite: 1, 2].</p>
+    <p>The problem? <strong>LLMs lack physical intuition</strong>[cite: 1, 2]. They can write perfect Python syntax, but they cannot predict how a complex physics engine will react to a specific exponential scaling factor[cite: 2]. If the first guess is sub-optimal, the robot never learns, and the process dies[cite: 2].</p>
+    <p><strong>EUREKA shifts the paradigm.</strong> It realizes that reward design isn't a <em>translation</em> problem (Language $\rightarrow$ Code); it is an <strong>optimization</strong> problem (Code $\rightarrow$ Feedback $\rightarrow$ Better Code)[cite: 1, 2].</p>
+
+    <div class="image-container">
+        <img src="images/slide_3_final.png" alt="The 'Open-Loop' Failure infographic showing Path A hitting a wall and Path B as a glowing circular loop.">
+        <span class="caption">Figure 3: EUREKA treats reward design as an iterative loop rather than a single-shot prompt[cite: 1, 2].</span>
+    </div>
+</section>
+
+<section id="ch6">
+    <h2>Chapter 6: Introducing EUREKA</h2>
+    <p><strong>EUREKA</strong> (Evolution-driven Universal REward Kit for Agent) is an autonomous, closed-loop system[cite: 1, 2]. It treats the LLM not just as a coder, but as an <strong>Evolutionary Optimizer</strong>[cite: 1].</p>
+    <p>The system operates in a 3-step cycle that allows it to evolve rewards that eventually outperform human experts on <strong>83% of tasks</strong>[cite: 1].</p>
+</section>
+
+<section id="ch7">
+    <h2>Chapter 7: Pillar 1: Environment as Context</h2>
+    <p>Most AI systems need a human to explain the robot's body[cite: 1]. EUREKA bypasses this by feeding the <strong>raw Python source code</strong> of the simulation environment directly into the LLM[cite: 1].</p>
+    <p>By reading the code, the LLM performs a zero-shot analysis of the "API of the world"[cite: 1]. It identifies available variables — like <code>fingertip_pos</code> or <code>obj_rot</code> — without any human help[cite: 1]. It understands the physics it is dealing with before it ever writes a single line of reward logic[cite: 1].</p>
+</section>
+
+<section id="ch8">
+    <h2>Chapter 8: Pillar 2: Evolutionary Search</h2>
+    <p>Instead of making one "best guess," EUREKA uses the stochastic nature of LLMs to generate a batch of <strong>$K=16$ reward candidates</strong> simultaneously[cite: 1].</p>
+    <p>This is an <strong>Evolutionary Search</strong> over the space of all possible Python programs[cite: 1]. Each candidate represents a different mathematical strategy:
+    <ul>
+        <li>Candidate 1 might prioritize speed[cite: 1].</li>
+        <li>Candidate 2 might prioritize smooth movement[cite: 1].</li>
+        <li>Candidate 3 might use an exponential scaling for distance[cite: 1].</li>
+    </ul>
+    EUREKA evaluates all 16 candidates in parallel using <strong>GPU-accelerated RL</strong> (NVIDIA IsaacGym), which is up to 1,000x faster than traditional simulators[cite: 2]. This massive parallelism allows EUREKA to "fail fast" and find the most promising mathematical "mutations"[cite: 1].</p>
+
+    <div class="image-container">
+        <img src="images/slide_5_final.png" alt="The EUREKA Loop: A 3-Step Cycle showing data flowing from Code to LLM to Robot and back.">
+        <span class="caption">Figure 4: The system samples 16 strategies at once, training them in parallel to find the best mathematical path[cite: 1, 2].</span>
+    </div>
+</section>
+
+<section id="ch9">
+    <h2>Chapter 9: Reward Reflection—The "Aha" Moment</h2>
+    <p>How does a system with no physical body "debug" a physics problem? This is where EUREKA introduces its most profound innovation: <strong>Reward Reflection</strong>[cite: 1].</p>
+    <p>In previous iterations of AI robotics, if a reward function failed, the system was blind to <em>why</em>. EUREKA solves this by performing what engineers call <strong>Credit Assignment</strong>[cite: 1, 2]. It doesn't just look at a final success score; it tracks the individual components of the reward over time—the logs of velocity, distance, and rotation[cite: 1].</p>
+    <p>The process works in a semantic loop[cite: 1]:
+    <ol>
+        <li><strong>The Logs</strong>: EUREKA records the success rates and the specific numerical values of every sub-reward[cite: 1].</li>
+        <li><strong>The Translation</strong>: It converts these raw numbers into a <strong>Textual Summary</strong> that the LLM can "read"[cite: 1].</li>
+        <li><strong>The Insight</strong>: The LLM analyzes the data and identifies which part of the math is the bottleneck[cite: 1].</li>
+    </ol>
+    Consider this internal reasoning from EUREKA:
+    <blockquote>"Since the rotation_reward component seems mostly adequate, I would recommend introducing another component, such as a penalty for large angular velocities, to reinforce stable spinning behavior." [cite: 2]</blockquote>
+    Mathematically, this transformation can be expressed as a semantic gradient:
+    <div class="math-display">
+        $$\text{Logs} \{ \text{Success}, \text{Reward}_{1 \dots k} \} \xrightarrow{\text{Reflect}} \Delta \text{Code}$$
+    </div>
+    <p>In this formula, the change in code ($\Delta \text{Code}$) is a direct function of the reflection on the relationship between the final success and the individual reward terms ($k$)[cite: 1]. It effectively turns raw data into symbolic logic[cite: 1].</p>
+
+    <div class="image-container">
+        <img src="images/slide_4_final.png" alt="Reward Reflection interface showing a graph on the left and textual critique on the right.">
+        <span class="caption">Figure 5: Reward Reflection allows the LLM to perform a semantic "code review" on its own math based on real-world data[cite: 1].</span>
+    </div>
+</section>
+
+<section id="ch10">
+    <h2>Chapter 10: The Formal Objective—Nested Optimization</h2>
+    <p>To the casual observer, EUREKA looks like a "cool AI trick." To a researcher, it is a rigorous solution to a <strong>Nested Optimization Problem</strong>[cite: 1, 2].</p>
+    <p>In standard robotics, we optimize the robot's <strong>actions</strong>. In EUREKA, we are optimizing the <strong>program</strong> ($R$) that defines the robot's desires[cite: 1, 2]. This creates two distinct loops[cite: 1, 2]:
+    <ul>
+        <li><strong>The Inner Loop ($A_M$):</strong> The RL "Student" (like PPO) learns a behavior based on a specific reward function $R$[cite: 1, 2].</li>
+        <li><strong>The Outer Loop ($F$):</strong> The LLM "Teacher" searches the space of all possible Python functions to find the one that maximizes the final fitness[cite: 1, 2].</li>
+    </ul>
+    We can formalize the heart of the EUREKA paper with this expression[cite: 1, 2]:</p>
+    <div class="math-display">
+        $$\max_{R \in \mathcal{R}} F(A_M(R))$$
+    </div>
+    <ul>
+        <li><strong>$R \in \mathcal{R}$</strong>: The variable we are solving for—the space of all executable Python reward functions[cite: 1, 2].</li>
+        <li><strong>$A_M(R)$</strong>: The reinforcement learning algorithm training on environment $M$[cite: 1, 2].</li>
+        <li><strong>$F(\cdot)$</strong>: The "Fitness Function"—the ground-truth success metric that the human actually cares about[cite: 1, 2].</li>
+    </ul>
+
+    <div class="image-container">
+        <img src="images/slide_6_final.png" alt="Map of the Formal Objective equation with annotated callouts to Code, Robot, and Trophy icons.">
+        <span class="caption">Figure 6: EUREKA treats reward code as the primary variable in a hierarchical optimization process[cite: 1, 2].</span>
+    </div>
+</section>
+
+<section id="ch11">
+    <h2>Chapter 11: Discovery Over Imitation</h2>
+    <p>One might assume that EUREKA is simply a faster way to write the same rewards humans would write. However, the data reveals something far more provocative: EUREKA-generated rewards are often <strong>weakly or even negatively correlated</strong> with human-designed ones[cite: 1].</p>
+    <p>Humans have an inherent bias toward <strong>interpretable math</strong>—we like simple linear weights and intuitive bonuses[cite: 1]. EUREKA has no such bias[cite: 1]. It discovers complex, non-linear mathematical forms, such as specific exponential temperature scalings, that are perfectly tuned for the RL optimizer’s "learning gradient" but look "wrong" to a human eye[cite: 1].</p>
+    <p>We can measure this novelty using the Pearson correlation coefficient ($\rho$)[cite: 1]:</p>
+    <div class="math-display">
+        $$\rho(R_{\text{Eureka}}, R_{\text{Human}}) \approx 0$$
+    </div>
+    <p>This near-zero correlation proves that EUREKA is performing <strong>novel discovery</strong>, not just imitation[cite: 1]. It is exploring a space of solutions that human intuition consistently misses[cite: 1].</p>
+
+    <div class="image-container">
+        <img src="images/slide_7_final.png" alt="Scatter plot showing high performance vs low human correlation, highlighting the Novel Discovery Zone.">
+        <span class="caption">Figure 7: EUREKA wins by ignoring human biases and focusing purely on what maximizes the learning signal[cite: 1].</span>
+    </div>
+</section>
+
+<section id="ch12">
+    <h2>Chapter 12: The Proof—83% Better Than Humans</h2>
+    <p>EUREKA's performance isn't limited to a single "hero result." The researchers tested the system across a massive diversity of 29 tasks and 10 distinct robot morphologies—from quadrupeds and bipeds to the highly complex five-fingered Shadow Hand[cite: 1].</p>
+    <p>The results were definitive:
+    <ul>
+        <li><strong>Performance</strong>: EUREKA outperformed expert human rewards on <strong>83% of tasks</strong>[cite: 1].</li>
+        <li><strong>Magnitude</strong>: It led to an average normalized improvement of <strong>52%</strong> over human experts[cite: 1].</li>
+        <li><strong>The Milestone</strong>: It successfully trained the Shadow Hand to perform rapid, continuous <strong>pen spinning</strong>—a feat previously unfeasible via manual reward design[cite: 1].</li>
+    </ul>
+    To compare these results scientifically, EUREKA uses the <strong>Human Normalized Score</strong>[cite: 1]:</p>
+    <div class="math-display">
+        $$\text{Score}_{\text{norm}} = \frac{R_{\text{Eureka}} - R_{\text{Sparse}}}{R_{\text{Human}} - R_{\text{Sparse}}}$$
+    </div>
+    <p>Whenever this score is greater than <strong>1.0</strong>, the AI has officially surpassed the expert human baseline[cite: 1].</p>
+
+    <div class="image-container">
+        <img src="images/slide_8_final.png" alt="A grid of 9 simulation windows showing different robot tasks with a large glowing 83% overlay.">
+        <span class="caption">Figure 8: EUREKA demonstrates universal generalization, mastering the process of reward design across the entire field of robotics[cite: 1].</span>
+    </div>
+</section>
+
+<section id="ch13">
+    <h2>Chapter 13: The Catch—Optimizer, Not Creator</h2>
+    <p>Despite its mastery, EUREKA is not a "magic wand." It is a <strong>Proxy Teacher</strong>, not a goal-setter[cite: 2].</p>
+    <p>The technical integrity of the system relies on a clear "Chain of Command"[cite: 2]:</p>
+    <div class="math-display">
+        $$\text{Human}(F) \rightarrow \text{LLM}(R) \rightarrow \text{Robot}(\pi)$$
+    </div>
+    <p>The <strong>Human Role</strong> is still critical: you must define the <strong>Fitness Function ($F$)</strong>[cite: 1, 2]. EUREKA will find the most efficient mathematical path to reach that goal, but it cannot invent the "Why" behind the task[cite: 1, 2]. If your success metric is flawed or misses safety constraints, EUREKA will "reward hack" its way to a dangerous or destructive solution[cite: 2].</p>
+    <p>We are shifting from engineering the <strong>"How"</strong> (the reward) to defining the <strong>"What"</strong> (the success metric)[cite: 2].</p>
+
+    <div class="image-container">
+        <img src="images/slide_9_final.png" alt="Process flow showing the hand-off from a human goal (golden trophy) to an AI formula (green code).">
+        <span class="caption">Figure 9: The human remains the "CEO" of the goal, while the AI handles the mathematical execution[cite: 2].</span>
+    </div>
+</section>
+
+<section>
+    <h2>Final Reflection—The Future of Design</h2>
+    <p>EUREKA marks the end of an era where humans toil over reward weights[cite: 1, 2]. By closing the loop between high-level reasoning (LLMs) and low-level physical execution (RL), it provides a blueprint for machines that can teach themselves[cite: 1, 2].</p>
+    <p>The lesson is clear: in the future of robotics, our job isn't to code the behavior; it's to define the mastery[cite: 2].</p>
+
+    <div class="image-container">
+        <img src="images/slide_10_final.png" alt="Tablet mockup showing a Substack article on EUREKA prompt engineering.">
+        <span class="caption">Figure 10: Want to see the exact prompts? Deep-dive into the prompt engineering and mathematical extensions that make EUREKA possible[cite: 2].</span>
+    </div>
+</section>
+
+</body>
+</html>
